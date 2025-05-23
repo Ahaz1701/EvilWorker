@@ -38,6 +38,7 @@ function decryptLogFile(logFilePath) {
         let decryptedData = "";
 
         for (const encryptedLog of encryptedLogs) {
+            if (!encryptedLog.trim()) continue;
             const encryptedEntry = JSON.parse(encryptedLog);
             const [[iv, encryptedData]] = Object.entries(encryptedEntry);
             decryptedData += decryptData(iv, encryptedData);
